@@ -50,6 +50,7 @@ public class WoodBlocks {
     private final String id;
     private final boolean flammable;
     private final Identifier signTextureIdentifier;
+    private final int leafItemColor;
 
     public final Block PLANKS;
     public final Block SAPLING;
@@ -74,13 +75,14 @@ public class WoodBlocks {
 
     public final EntityType<CBoatEntity> BOAT_ENTITY;
 
-    private WoodBlocks(CModInstance modInstance, String id, boolean flammable, SaplingGenerator saplingGenerator, BoatEntity.Type boatType, PressurePlateBlock.ActivationRule pressurePlateActivationRule) {
+    private WoodBlocks(CModInstance modInstance, String id, boolean flammable, int leafItemColor, SaplingGenerator saplingGenerator, BoatEntity.Type boatType, PressurePlateBlock.ActivationRule pressurePlateActivationRule) {
         this.MOD_INSTANCE = modInstance;
         String modId = modInstance.getModId();
         ItemGroup itemGroup = modInstance.getItemGroup();
 
         this.id = id;
         this.flammable = flammable;
+        this.leafItemColor = leafItemColor;
         this.signTextureIdentifier = new Identifier(modId, "entity/sign/" + id);
 
         this.PLANKS = modInstance.register(id + "_planks", new Block(FabricBlockSettings.copy(Blocks.OAK_PLANKS)));
@@ -177,12 +179,16 @@ public class WoodBlocks {
     public boolean isFlammable() {
         return this.flammable;
     }
+    public int getLeafItemColor() {
+        return this.leafItemColor;
+    }
     public Identifier getSignTextureIdentifier() {
         return this.signTextureIdentifier;
     }
 
     public static class Builder {
         private boolean flammable = true;
+        private int leafItemColor = 0;
         private SaplingGenerator saplingGenerator = new OakSaplingGenerator();
         private BoatEntity.Type boatType = BoatEntity.Type.OAK;
         private PressurePlateBlock.ActivationRule pressurePlateActivationRule = PressurePlateBlock.ActivationRule.EVERYTHING;
@@ -191,6 +197,10 @@ public class WoodBlocks {
 
         public WoodBlocks.Builder nonFlammable() {
             this.flammable = false;
+            return this;
+        }
+        public WoodBlocks.Builder leafItemColor(int color) {
+            this.leafItemColor = color;
             return this;
         }
         public WoodBlocks.Builder saplingGenerator(SaplingGenerator saplingGenerator) {
@@ -207,7 +217,7 @@ public class WoodBlocks {
         }
 
         public WoodBlocks build(CModInstance info, String id) {
-            return new WoodBlocks(info, id, this.flammable, this.saplingGenerator, this.boatType, this.pressurePlateActivationRule);
+            return new WoodBlocks(info, id, this.flammable, this.leafItemColor, this.saplingGenerator, this.boatType, this.pressurePlateActivationRule);
         }
     }
 }
