@@ -1,0 +1,41 @@
+{
+    "schemaVersion": 1,
+    "license": "MIT",
+    "id": "chord",
+    "version": "${version}",
+
+    "name": "Chord",
+    "description": "Simple API for general stuff in Fabric",
+    "icon": "pack.png",
+
+    "authors": [
+        "Andante"
+    ],
+    "contributors": [],
+    "contact": {
+        "homepage": "https://andantedevs.github.io/chord",
+        "sources": "https://github.com/andantedevs/chord",
+        "issues": "https://github.com/andantedevs/chord/issues"
+    },
+
+    "environment": "*",
+    "entrypoints": {
+        "main": [
+            "me.andante.chord.Chord",
+            "me.andante.chord.client.network.BoatSpawnNetworkHandler::register"
+        ],
+        "client": [],
+        "server": []
+    },
+    "mixins": [
+        "chord.mixins.json"
+    ],
+    "depends": {
+        "fabricloader": ">=0.10.0",
+        "fabric": ">=0.28.0",
+        "minecraft": ">=1.16.2"
+    },
+    "custom": {
+        "modmenu:api": true
+    }
+}

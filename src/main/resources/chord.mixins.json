@@ -1,0 +1,19 @@
+{
+  "required": true,
+  "package": "me.andante.chord.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+      "BlockEntityTypeMixin",
+      "PlantBlockMixin"
+  ],
+  "client": [
+      "client.BoatEntityRendererMixin",
+
+      "client.SignBlockEntityRendererMixin",
+      "client.TexturedRenderLayersMixin"
+  ],
+  "server": [],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
