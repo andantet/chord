@@ -31,11 +31,6 @@ public class CModInstance {
         return new Identifier(this.MOD_ID, "textures/" + path + ".png");
     }
 
-    // wood
-    public WoodBlocks.Builder createWoodBlocks() {
-        return new WoodBlocks.Builder();
-    }
-
     // registries
     public Block register(String id, Block block, boolean registerItem) {
         if (registerItem) register(id, new BlockItem(block, new Item.Settings().group(this.ITEM_GROUP)));
