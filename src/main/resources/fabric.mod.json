@@ -21,10 +21,11 @@
     "environment": "*",
     "entrypoints": {
         "main": [
-            "me.andante.chord.Chord",
+            "me.andante.chord.Chord"
+        ],
+        "client": [
             "me.andante.chord.client.network.BoatSpawnNetworkHandler::register"
         ],
-        "client": [],
         "server": []
     },
     "mixins": [
