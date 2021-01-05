@@ -19,6 +19,7 @@ import net.minecraft.datafixer.TypeReferences;
 import net.minecraft.util.Util;
 import net.minecraft.util.registry.Registry;
 
+@SuppressWarnings("unused")
 @Environment(EnvType.CLIENT)
 public class CClientUtils {
     public static void registerWoodBlocks(WoodBlocks... woodBlocks) {
@@ -40,11 +41,9 @@ public class CClientUtils {
             brlmInstance.putBlock(set.LEAVES, RenderLayer.getCutoutMipped());
 
             // color providers
-            ColorProviderRegistry.BLOCK.register((state, world, pos, tintIndex) -> {
-                return world != null && pos != null
-                    ? BiomeColors.getGrassColor(world, pos)
-                    : GrassColors.getColor(0.5D, 1.0D);
-            }, set.LEAVES);
+            ColorProviderRegistry.BLOCK.register((state, world, pos, tintIndex) -> world != null && pos != null
+                ? BiomeColors.getGrassColor(world, pos)
+                : GrassColors.getColor(0.5D, 1.0D), set.LEAVES);
             ColorProviderRegistry.ITEM.register((stack, tintIndex) -> set.getLeafItemColor(), set.LEAVES);
         }
     }

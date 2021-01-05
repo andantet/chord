@@ -15,7 +15,7 @@ import net.minecraft.network.PacketByteBuf;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
-@SuppressWarnings("deprecation")
+@SuppressWarnings({"deprecation","unused"})
 @Environment(EnvType.CLIENT)
 public class BoatSpawnNetworkHandler {
     public void register() {
