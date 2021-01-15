@@ -41,10 +41,12 @@ public class CClientUtils {
             brlmInstance.putBlock(set.LEAVES, RenderLayer.getCutoutMipped());
 
             // color providers
-            ColorProviderRegistry.BLOCK.register((state, world, pos, tintIndex) -> world != null && pos != null
-                ? BiomeColors.getGrassColor(world, pos)
-                : GrassColors.getColor(0.5D, 1.0D), set.LEAVES);
-            ColorProviderRegistry.ITEM.register((stack, tintIndex) -> set.getLeafItemColor(), set.LEAVES);
+            if (set.getLeafItemColor() != -1) {
+                ColorProviderRegistry.BLOCK.register((state, world, pos, tintIndex) -> world != null && pos != null
+                    ? BiomeColors.getGrassColor(world, pos)
+                    : GrassColors.getColor(0.5D, 1.0D), set.LEAVES);
+                ColorProviderRegistry.ITEM.register((stack, tintIndex) -> set.getLeafItemColor(), set.LEAVES);
+            }
         }
     }
 }

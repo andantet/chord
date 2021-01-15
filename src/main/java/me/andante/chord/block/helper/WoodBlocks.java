@@ -178,7 +178,7 @@ public class WoodBlocks {
     public static class Builder {
         private ItemGroup itemGroup;
         private boolean flammable = true;
-        private int leafItemColor = 0;
+        private int leafItemColor = -1;
         private SaplingGenerator saplingGenerator = new OakSaplingGenerator();
         private BoatEntity.Type boatType = BoatEntity.Type.OAK;
         private PressurePlateBlock.ActivationRule pressurePlateActivationRule = PressurePlateBlock.ActivationRule.EVERYTHING;

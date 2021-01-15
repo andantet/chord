@@ -107,7 +107,7 @@ public class BeamBlock extends Block implements Waterloggable {
 
     /**
      * <p>
-     * Copyright (c) 2020 TechReborn
+     * Copyright (c) 2021 TechReborn
      * <p>
      * Permission is hereby granted, free of charge, to any person obtaining a copy
      * of this software and associated documentation files (the "Software"), to deal
