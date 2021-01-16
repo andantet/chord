@@ -21,7 +21,7 @@ import net.fabricmc.fabric.api.network.ServerSidePacketRegistry;
 
 @SuppressWarnings("deprecation")
 public class CBoatEntity extends BoatEntity {
-    private CBoatInfo boatInfo;
+    private final CBoatInfo boatInfo;
 
     public CBoatEntity(EntityType<? extends CBoatEntity> type, World world, CBoatInfo boatInfo) {
         super(type, world);

@@ -2,7 +2,7 @@ package me.andante.chord.block;
 
 import java.util.ArrayList;
 
-import me.andante.chord.block.enums.TallerBlockPart;
+import me.andante.chord.block.enums.TripleBlockPart;
 import me.andante.chord.state.property.CProperties;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -25,21 +25,26 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
 
+/**
+ * A three-tall plant block
+ * @author ShadewEnder redgalaxysw@gmail.com
+ */
+@SuppressWarnings("unused")
 public class TallerPlantBlock extends PlantBlock {
-    public static final EnumProperty<TallerBlockPart> PART = CProperties.TALLER_BLOCK_PART;
+    public static final EnumProperty<TripleBlockPart> PART = CProperties.TRIPLE_BLOCK_PART;
 
     public TallerPlantBlock(AbstractBlock.Settings settings) {
         super(settings);
-        this.setDefaultState(this.stateManager.getDefaultState().with(PART, TallerBlockPart.LOWER));
+        this.setDefaultState(this.stateManager.getDefaultState().with(PART, TripleBlockPart.LOWER));
     }
 
     @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState newState, WorldAccess world, BlockPos pos, BlockPos posFrom) {
-        TallerBlockPart part = state.get(PART);
-        if (direction == Direction.UP && part != TallerBlockPart.UPPER) {
+        TripleBlockPart part = state.get(PART);
+        if (direction == Direction.UP && part != TripleBlockPart.UPPER) {
             Block block = newState.getBlock();
             if (block != this) return Blocks.AIR.getDefaultState();
-        } else if (direction == Direction.DOWN && part != TallerBlockPart.LOWER) {
+        } else if (direction == Direction.DOWN && part != TripleBlockPart.LOWER) {
             Block block = newState.getBlock();
             if (block != this) return Blocks.AIR.getDefaultState();
         }
@@ -57,29 +62,29 @@ public class TallerPlantBlock extends PlantBlock {
 
     @Override
     public void onPlaced(World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack) {
-        world.setBlockState(pos.up(1), this.getDefaultState().with(PART, TallerBlockPart.MIDDLE), 3);
-        world.setBlockState(pos.up(2), this.getDefaultState().with(PART, TallerBlockPart.UPPER), 3);
+        world.setBlockState(pos.up(1), this.getDefaultState().with(PART, TripleBlockPart.MIDDLE), 3);
+        world.setBlockState(pos.up(2), this.getDefaultState().with(PART, TripleBlockPart.UPPER), 3);
     }
 
     @Override
     public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
-        if (state.get(PART) == TallerBlockPart.LOWER) {
+        if (state.get(PART) == TripleBlockPart.LOWER) {
             return super.canPlaceAt(state, world, pos);
-        } else if(state.get(PART) == TallerBlockPart.MIDDLE) {
+        } else if(state.get(PART) == TripleBlockPart.MIDDLE) {
             BlockState blockStateDown1 = world.getBlockState(pos.down(1));
-            return (blockStateDown1.isOf(this) && blockStateDown1.get(PART) == TallerBlockPart.LOWER);
+            return (blockStateDown1.isOf(this) && blockStateDown1.get(PART) == TripleBlockPart.LOWER);
         } else {
             BlockState blockStateDown1 = world.getBlockState(pos.down(1));
             BlockState blockStateDown2 = world.getBlockState(pos.down(2));
-            return (blockStateDown1.isOf(this) && blockStateDown1.get(PART) == TallerBlockPart.MIDDLE)
-                && (blockStateDown2.isOf(this) && blockStateDown2.get(PART) == TallerBlockPart.LOWER);
+            return (blockStateDown1.isOf(this) && blockStateDown1.get(PART) == TripleBlockPart.MIDDLE)
+                && (blockStateDown2.isOf(this) && blockStateDown2.get(PART) == TripleBlockPart.LOWER);
         }
     }
 
     public void placeAt(WorldAccess world, BlockPos pos, int flags) {
-        world.setBlockState(pos, this.getDefaultState().with(PART, TallerBlockPart.LOWER), flags);
-        world.setBlockState(pos.up(1), this.getDefaultState().with(PART, TallerBlockPart.MIDDLE), flags);
-        world.setBlockState(pos.up(2), this.getDefaultState().with(PART, TallerBlockPart.UPPER), flags);
+        world.setBlockState(pos, this.getDefaultState().with(PART, TripleBlockPart.LOWER), flags);
+        world.setBlockState(pos.up(1), this.getDefaultState().with(PART, TripleBlockPart.MIDDLE), flags);
+        world.setBlockState(pos.up(2), this.getDefaultState().with(PART, TripleBlockPart.UPPER), flags);
     }
 
     @Override
@@ -102,15 +107,15 @@ public class TallerPlantBlock extends PlantBlock {
 
     protected static void onBreakInCreative(World world, BlockPos pos, BlockState state, PlayerEntity player) {
         ArrayList<BlockPos> positions = new ArrayList<BlockPos>();
-        TallerBlockPart tallerBlockPart = state.get(PART);
+        TripleBlockPart tripleBlockPart = state.get(PART);
 
-        if (tallerBlockPart == TallerBlockPart.UPPER) {
+        if (tripleBlockPart == TripleBlockPart.UPPER) {
             positions.add(pos.down(1));
             positions.add(pos.down(2));
-        } else if (tallerBlockPart == TallerBlockPart.MIDDLE) {
+        } else if (tripleBlockPart == TripleBlockPart.MIDDLE) {
             positions.add(pos.down(1));
             positions.add(pos.up(1));
-        } else if (tallerBlockPart == TallerBlockPart.LOWER) {
+        } else if (tripleBlockPart == TripleBlockPart.LOWER) {
             positions.add(pos.up(1));
             positions.add(pos.up(2));
         }
@@ -134,6 +139,6 @@ public class TallerPlantBlock extends PlantBlock {
     @Override
     @Environment(EnvType.CLIENT)
     public long getRenderingSeed(BlockState state, BlockPos pos) {
-        return MathHelper.hashCode(pos.getX(), pos.down(state.get(PART) == TallerBlockPart.LOWER ? 0 : 1).getY(), pos.getZ());
+        return MathHelper.hashCode(pos.getX(), pos.down(state.get(PART) == TripleBlockPart.LOWER ? 0 : 1).getY(), pos.getZ());
     }
 }

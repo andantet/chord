@@ -2,7 +2,7 @@ package me.andante.chord.block.enums;
 
 import net.minecraft.util.StringIdentifiable;
 
-public enum TallerBlockPart implements StringIdentifiable {
+public enum TripleBlockPart implements StringIdentifiable {
     UPPER,
     MIDDLE,
     LOWER;
@@ -11,6 +11,7 @@ public enum TallerBlockPart implements StringIdentifiable {
         return this.asString();
     }
 
+    @Override
     public String asString() {
         switch (this) {
             case UPPER:

@@ -13,7 +13,7 @@ import net.minecraft.util.Identifier;
 @Mixin(BoatEntityRenderer.class)
 public class BoatEntityRendererMixin {
     @Inject(method = "getTexture", at = @At("HEAD"), cancellable = true)
-    private void injectCustomTexture(BoatEntity boat, CallbackInfoReturnable<Identifier> cir) {
+    private void injectCustomTextures(BoatEntity boat, CallbackInfoReturnable<Identifier> cir) {
         if (boat instanceof CBoatEntity) cir.setReturnValue(((CBoatEntity) boat).getBoatSkin());
     }
 }

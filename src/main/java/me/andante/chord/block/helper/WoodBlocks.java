@@ -40,6 +40,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
 
+@SuppressWarnings("unused")
 public class WoodBlocks {
     private final String id;
     private final String modId;
@@ -185,31 +186,65 @@ public class WoodBlocks {
 
         public Builder() {}
 
+        /**
+         * @param itemGroup The item group for all of this wood block set's items to be placed in.
+         * @return Modified {@link WoodBlocks.Builder}
+         */
         public WoodBlocks.Builder itemGroup(ItemGroup itemGroup) {
             this.itemGroup = itemGroup;
             return this;
         }
+        /**
+         * Sets the wood set to not be registered in fire/fuel registries.
+         * @return Modified {@link WoodBlocks.Builder}
+         */
         public WoodBlocks.Builder nonFlammable() {
             this.flammable = false;
             return this;
         }
+        /**
+         * Sets the leaf's item color to be registered client-side.
+         * @param color A decimal/hexadecimal color.
+         * @return Modified {@link WoodBlocks.Builder}
+         */
         public WoodBlocks.Builder leafItemColor(int color) {
             this.leafItemColor = color;
             return this;
         }
+        /**
+         * A custom sapling generator for this wood set's sapling.
+         * @param saplingGenerator The wood set's sapling generator.
+         * @return Modified {@link WoodBlocks.Builder}
+         */
         public WoodBlocks.Builder saplingGenerator(SaplingGenerator saplingGenerator) {
             this.saplingGenerator = saplingGenerator;
             return this;
         }
+        /**
+         * Sets a vanilla boat type to be assigned to the wood set. This is practically useless.
+         * @param boatType A boat type for this wood set.
+         * @return Modified {@link WoodBlocks.Builder}
+         */
         public WoodBlocks.Builder boatType(BoatEntity.Type boatType) {
             this.boatType = boatType;
             return this;
         }
+        /**
+         * Sets under what conditions this wood set's pressure plate should be activated.
+         * @param pressurePlateActivationRule A pressure plate activation rule.
+         * @return Modified {@link WoodBlocks.Builder}
+         */
         public WoodBlocks.Builder pressurePlateActivationRule(PressurePlateBlock.ActivationRule pressurePlateActivationRule) {
             this.pressurePlateActivationRule = pressurePlateActivationRule;
             return this;
         }
 
+        /**
+         * Creates and registers an instance of {@link WoodBlocks}.
+         * @param modId The mod's identifier.
+         * @param id The wood set's identifier.
+         * @return New instance of {@link WoodBlocks}
+         */
         public WoodBlocks build(String modId, String id) {
             return new WoodBlocks(modId, id, this.itemGroup, this.flammable, this.leafItemColor, this.saplingGenerator, this.boatType, this.pressurePlateActivationRule);
         }

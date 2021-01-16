@@ -1,8 +1,11 @@
 package me.andante.chord.state.property;
 
-import me.andante.chord.block.enums.TallerBlockPart;
+import me.andante.chord.block.enums.TripleBlockPart;
 import net.minecraft.state.property.EnumProperty;
 
 public class CProperties {
-    public static final EnumProperty<TallerBlockPart> TALLER_BLOCK_PART = EnumProperty.of("taller_block_part", TallerBlockPart.class);
+    /**
+     * A property that specifies whether a triple height block is the upper, middle, or lower half.
+     */
+    public static final EnumProperty<TripleBlockPart> TRIPLE_BLOCK_PART = EnumProperty.of("triple_block_part", TripleBlockPart.class);
 }
