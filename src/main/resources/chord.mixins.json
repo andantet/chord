@@ -6,7 +6,13 @@
     "BlockEntityTypeMixin",
 
     "scaffolding.DamageTrackerMixin",
-    "scaffolding.LivingEntityMixin"
+    "scaffolding.LivingEntityMixin",
+
+    "supporters_tags.FungusBlockMixin",
+    "supporters_tags.PlantBlockMixin",
+    "supporters_tags.RootsBlockMixin",
+    "supporters_tags.SproutsBlockMixin",
+    "supporters_tags.WitherRoseBlockMixin"
   ],
   "client": [
     "client.BoatEntityRendererMixin",
