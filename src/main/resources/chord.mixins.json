@@ -3,14 +3,16 @@
   "package": "me.andante.chord.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-      "BlockEntityTypeMixin",
-      "PlantBlockMixin"
+    "BlockEntityTypeMixin",
+
+    "scaffolding.DamageTrackerMixin",
+    "scaffolding.LivingEntityMixin"
   ],
   "client": [
-      "client.BoatEntityRendererMixin",
+    "client.BoatEntityRendererMixin",
 
-      "client.SignBlockEntityRendererMixin",
-      "client.TexturedRenderLayersMixin"
+    "client.SignBlockEntityRendererMixin",
+    "client.TexturedRenderLayersMixin"
   ],
   "server": [],
   "injectors": {
