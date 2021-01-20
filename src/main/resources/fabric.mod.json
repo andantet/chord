@@ -32,8 +32,8 @@
         "chord.mixins.json"
     ],
     "depends": {
-        "fabricloader": ">=0.10.0",
-        "fabric": ">=0.28.0",
+        "fabricloader": ">=0.11.0",
+        "fabric": ">=0.29.0",
         "minecraft": ">=1.16.2"
     },
     "custom": {
