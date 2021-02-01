@@ -1,42 +1,44 @@
 {
-    "schemaVersion": 1,
-    "license": "MIT",
-    "id": "chord",
-    "version": "${version}",
+  "schemaVersion": 1,
+  "license": "MIT",
+  "id": "chord",
+  "version": "${version}",
 
-    "name": "Chord",
-    "description": "Simple API for general stuff in Fabric",
-    "icon": "pack.png",
+  "name": "Chord",
+  "description": "Simple API for general stuff in Fabric",
+  "icon": "pack.png",
 
-    "authors": [
-        "Andante"
+  "authors": [
+    "Andante"
+  ],
+  "contributors": [],
+  "contact": {
+    "homepage": "https://andantedevs.github.io/chord",
+    "sources": "https://github.com/andantedevs/chord",
+    "issues": "https://github.com/andantedevs/chord/issues"
+  },
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "me.andante.chord.Chord"
     ],
-    "contributors": [],
-    "contact": {
-        "homepage": "https://andantedevs.github.io/chord",
-        "sources": "https://github.com/andantedevs/chord",
-        "issues": "https://github.com/andantedevs/chord/issues"
-    },
-
-    "environment": "*",
-    "entrypoints": {
-        "main": [
-            "me.andante.chord.Chord"
-        ],
-        "client": [
-            "me.andante.chord.client.network.BoatSpawnNetworkHandler::register"
-        ],
-        "server": []
-    },
-    "mixins": [
-        "chord.mixins.json"
+    "client": [
+      "me.andante.chord.client.network.BoatSpawnNetworkHandler::register"
     ],
-    "depends": {
-        "fabricloader": ">=0.11.0",
-        "fabric": ">=0.29.0",
-        "minecraft": ">=1.16.2"
-    },
-    "custom": {
-        "modmenu:api": true
+    "server": []
+  },
+  "mixins": [
+    "chord.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.11.0",
+    "fabric": ">=0.30.0",
+    "minecraft": ">=1.16.2"
+  },
+  "custom": {
+    "modmenu": {
+      "badges": [ "library" ]
     }
+  }
 }
