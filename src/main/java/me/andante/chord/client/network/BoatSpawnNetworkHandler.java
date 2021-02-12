@@ -61,6 +61,6 @@ public class BoatSpawnNetworkHandler {
         entity.pitch = pitch * 360 / 256F;
         entity.yaw = yaw * 360 / 256F;
 
-        world.addEntity(entity.getEntityId(), entity);
+        world.addEntity(entity.getId(), entity);
     }
 }

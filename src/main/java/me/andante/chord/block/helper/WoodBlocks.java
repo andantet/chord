@@ -12,6 +12,7 @@ import me.andante.chord.entity.boat.CBoatInfo;
 import me.andante.chord.item.CBoatItem;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
@@ -26,8 +27,10 @@ import net.minecraft.block.LeavesBlock;
 import net.minecraft.block.PillarBlock;
 import net.minecraft.block.PressurePlateBlock;
 import net.minecraft.block.SlabBlock;
+import net.minecraft.block.entity.SignBlockEntity;
 import net.minecraft.block.sapling.OakSaplingGenerator;
 import net.minecraft.block.sapling.SaplingGenerator;
+import net.minecraft.datafixer.TypeReferences;
 import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
@@ -37,6 +40,7 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
 
@@ -72,13 +76,13 @@ public class WoodBlocks {
 
     public final EntityType<CBoatEntity> BOAT_ENTITY;
 
-    private WoodBlocks(String modId, String id, ItemGroup itemGroup, boolean flammable, int leafItemColor, SaplingGenerator saplingGenerator, BoatEntity.Type boatType, PressurePlateBlock.ActivationRule pressurePlateActivationRule) {
+    private WoodBlocks(String modId, final String id, ItemGroup itemGroup, boolean flammable, int leafItemColor, SaplingGenerator saplingGenerator, BoatEntity.Type boatType, PressurePlateBlock.ActivationRule pressurePlateActivationRule) {
         this.id = id;
         this.modId = modId;
         this.itemGroup = itemGroup;
         this.flammable = flammable;
         this.leafItemColor = leafItemColor;
-        this.signTextureIdentifier = new Identifier(modId, "entity/sign/" + id);
+        this.signTextureIdentifier = new Identifier(modId, "entity/signs/" + id);
 
         this.PLANKS = register(id + "_planks", new Block(FabricBlockSettings.copy(Blocks.OAK_PLANKS)));
         this.SAPLING = register(id + "_sapling", new PublicSaplingBlock(saplingGenerator, FabricBlockSettings.copy(Blocks.OAK_SAPLING)));
@@ -141,25 +145,31 @@ public class WoodBlocks {
         new ImmutableMap.Builder<Block, Block>()
             .put(this.LOG, this.STRIPPED_LOG)
             .put(this.WOOD, this.STRIPPED_WOOD)
-            .build().forEach((base, result) -> UseBlockCallback.EVENT.register((player, world, hand, hit) -> {
-                if (player.getStackInHand(hand).getItem().isIn(FabricToolTags.AXES) && world.getBlockState(hit.getBlockPos()).getBlock() == base) {
-                    BlockPos blockPos = hit.getBlockPos();
-                    BlockState blockState = world.getBlockState(blockPos);
+            .build().forEach(
+                (base, result) -> UseBlockCallback.EVENT.register(
+                    (player, world, hand, hit) -> {
+                        if (FabricToolTags.AXES.contains(player.getStackInHand(hand).getItem()) && world.getBlockState(hit.getBlockPos()).getBlock() == base) {
+                            BlockPos blockPos = hit.getBlockPos();
+                            BlockState blockState = world.getBlockState(blockPos);
 
-                    world.playSound(player, blockPos, SoundEvents.ITEM_AXE_STRIP, SoundCategory.BLOCKS, 1.0F, 1.0F);
-                    if (!world.isClient) {
-                        world.setBlockState(blockPos, result.getDefaultState().with(PillarBlock.AXIS, blockState.get(PillarBlock.AXIS)), 11);
-                        if (!player.isCreative()) {
-                            ItemStack stack = player.getStackInHand(hand);
-                            stack.damage(1, player, ((p) -> p.sendToolBreakStatus(hand)));
+                            world.playSound(player, blockPos, SoundEvents.ITEM_AXE_STRIP, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                            if (!world.isClient) {
+                                world.setBlockState(blockPos, result.getDefaultState().with(PillarBlock.AXIS, blockState.get(PillarBlock.AXIS)), 11);
+                                if (!player.isCreative()) {
+                                    ItemStack stack = player.getStackInHand(hand);
+                                    stack.damage(1, player, ((p) -> p.sendToolBreakStatus(hand)));
+                                }
+                            }
+
+                            return ActionResult.SUCCESS;
                         }
+
+                        return ActionResult.PASS;
                     }
+            )
+        );
 
-                    return ActionResult.SUCCESS;
-                }
-
-                return ActionResult.PASS;
-            }));
+        Registry.register(Registry.BLOCK_ENTITY_TYPE, id, FabricBlockEntityTypeBuilder.create(SignBlockEntity::new, this.SIGN, this.WALL_SIGN).build(Util.getChoiceType(TypeReferences.BLOCK_ENTITY, id + "_sign")));
     }
 
     public String getId() {

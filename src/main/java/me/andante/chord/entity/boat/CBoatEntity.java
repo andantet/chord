@@ -4,6 +4,7 @@ import io.netty.buffer.Unpooled;
 import me.andante.chord.Chord;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.vehicle.BoatEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
@@ -63,7 +64,6 @@ public class CBoatEntity extends BoatEntity {
 
     @Override
     protected void fall(double heightDifference, boolean onGround, BlockState landedState, BlockPos landedPosition) {
-
         float savedFallDistance = this.fallDistance;
 
         // Run other logic, including setting the private field fallVelocity
@@ -78,9 +78,9 @@ public class CBoatEntity extends BoatEntity {
                     return;
                 }
 
-                this.handleFallDamage(this.fallDistance, 1.0F);
-                if (!this.world.isClient && !this.removed) {
-                    this.remove();
+                this.handleFallDamage(this.fallDistance, 1.0F, DamageSource.FALL);
+                if (!this.world.isClient && !this.isRemoved()) {
+                    this.kill();
                     if (this.world.getGameRules().getBoolean(GameRules.DO_ENTITY_DROPS)) {
                         for (int i = 0; i < 3; i++) {
                             this.dropItem(this.asPlanks());
@@ -101,7 +101,7 @@ public class CBoatEntity extends BoatEntity {
     public Packet<?> createSpawnPacket() {
         final PacketByteBuf buf = new PacketByteBuf(Unpooled.buffer());
 
-        buf.writeVarInt(this.getEntityId());
+        buf.writeVarInt(this.getId());
         buf.writeUuid(this.uuid);
         buf.writeVarInt(Registry.ENTITY_TYPE.getRawId(this.getType()));
         buf.writeDouble(this.getX());

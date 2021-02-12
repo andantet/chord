@@ -67,7 +67,7 @@ public class CBoatItem extends Item {
             world.spawnEntity(boat);
         }
 
-        if (!player.abilities.creativeMode) {
+        if (!player.getAbilities().creativeMode) {
             stack.decrement(1);
         }
 

@@ -36,11 +36,11 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
 
     // runtime utils
-    modRuntime ("io.github.prospector:modmenu:${project.mod_menu_version}") { exclude ( group: "net.fabricmc.fabric-api" ) }
-    modRuntime ("com.github.joaoh1:OkZoomer:${project.okzoomer_version}") { exclude ( group: "net.fabricmc.fabric-api" ) }
-    modRuntime ("com.github.jellysquid3:sodium-fabric:${project.sodium_version}") { exclude ( group: "net.fabricmc.fabric-api" ) }
-    modRuntime ("com.github.jellysquid3:lithium-fabric:${project.lithium_version}") { exclude ( group: "net.fabricmc.fabric-api" ) }
-    modRuntime ("com.github.jellysquid3:phosphor-fabric:${project.phosphor_version}") { exclude ( group: "net.fabricmc.fabric-api" ) }
+    // modRuntime ("io.github.prospector:modmenu:${project.mod_menu_version}") { exclude ( group: "net.fabricmc.fabric-api" ) }
+    // modRuntime ("com.github.joaoh1:OkZoomer:${project.okzoomer_version}") { exclude ( group: "net.fabricmc.fabric-api" ) }
+    // modRuntime ("com.github.jellysquid3:sodium-fabric:${project.sodium_version}") { exclude ( group: "net.fabricmc.fabric-api" ) }
+    // modRuntime ("com.github.jellysquid3:lithium-fabric:${project.lithium_version}") { exclude ( group: "net.fabricmc.fabric-api" ) }
+    // modRuntime ("com.github.jellysquid3:phosphor-fabric:${project.phosphor_version}") { exclude ( group: "net.fabricmc.fabric-api" ) }
 }
 
 processResources {
