@@ -6,7 +6,6 @@ import net.minecraft.block.ScaffoldingBlock;
 import net.minecraft.entity.FallingBlockEntity;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.item.ScaffoldingItem;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;

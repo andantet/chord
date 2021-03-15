@@ -7,8 +7,17 @@ sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
 
 archivesBaseName = project.archives_base_name
-version = project.mod_version
 group = project.maven_group
+
+if (System.env.CI == "true") {
+    def branch
+    branch = System.env.GITHUB_REF
+    branch = branch.substring(branch.lastIndexOf("/") + 1)
+
+    version = "${project.mod_version}+a${System.env.GITHUB_RUN_NUMBER}.${branch}-fabric"
+} else {
+    version = "${project.mod_version}+${project.minecraft_version}-fabric"
+}
 
 repositories {
     maven { url "https://jitpack.io" }

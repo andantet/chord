@@ -101,6 +101,7 @@ public abstract class AbstractTallCeilingPlantBlock extends PlantBlock {
         return OffsetType.XZ;
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     @Environment(EnvType.CLIENT)
     public long getRenderingSeed(BlockState state, BlockPos pos) {

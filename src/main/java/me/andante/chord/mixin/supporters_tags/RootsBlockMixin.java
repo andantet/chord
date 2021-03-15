@@ -14,6 +14,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class RootsBlockMixin {
     @Inject(method = "canPlantOnTop", at = @At("RETURN"), cancellable = true)
     private void canPlantOnTop(BlockState floor, BlockView world, BlockPos pos, CallbackInfoReturnable<Boolean> cir) {
-        if (floor.isIn(CBlockTags.ROOTS_SUPPORTERS)) cir.setReturnValue(true);
+        if (floor.isIn(CBlockTags.ROOTS_SUPPORTERS)) {
+            cir.setReturnValue(true);
+        }
     }
 }

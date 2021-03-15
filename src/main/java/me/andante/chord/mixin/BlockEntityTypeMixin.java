@@ -14,6 +14,8 @@ public class BlockEntityTypeMixin {
     @SuppressWarnings("all")
     @Inject(method = "supports", at = @At("HEAD"), cancellable = true)
     private void supports(Block block, CallbackInfoReturnable<Boolean> cir) {
-        if (BlockEntityType.SIGN.equals(this) && block instanceof CSign) cir.setReturnValue(true);
+        if (BlockEntityType.SIGN.equals(this) && block instanceof CSign) {
+            cir.setReturnValue(true);
+        }
     }
 }

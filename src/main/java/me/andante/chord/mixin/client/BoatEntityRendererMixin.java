@@ -14,6 +14,8 @@ import net.minecraft.util.Identifier;
 public class BoatEntityRendererMixin {
     @Inject(method = "getTexture", at = @At("HEAD"), cancellable = true)
     private void injectCustomTextures(BoatEntity boat, CallbackInfoReturnable<Identifier> cir) {
-        if (boat instanceof CBoatEntity) cir.setReturnValue(((CBoatEntity) boat).getBoatSkin());
+        if (boat instanceof CBoatEntity) {
+            cir.setReturnValue(((CBoatEntity) boat).getBoatTexture());
+        }
     }
 }

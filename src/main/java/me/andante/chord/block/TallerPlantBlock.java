@@ -93,7 +93,7 @@ public class TallerPlantBlock extends PlantBlock {
             if (player.isCreative()) {
                 onBreakInCreative(world, pos, state, player);
             } else {
-                dropStacks(state, world, pos, (BlockEntity) null, player, player.getMainHandStack());
+                dropStacks(state, world, pos, null, player, player.getMainHandStack());
             }
         }
 
@@ -106,7 +106,7 @@ public class TallerPlantBlock extends PlantBlock {
     }
 
     protected static void onBreakInCreative(World world, BlockPos pos, BlockState state, PlayerEntity player) {
-        ArrayList<BlockPos> positions = new ArrayList<BlockPos>();
+        ArrayList<BlockPos> positions = new ArrayList<>();
         TripleBlockPart tripleBlockPart = state.get(PART);
 
         if (tripleBlockPart == TripleBlockPart.UPPER) {
@@ -136,6 +136,7 @@ public class TallerPlantBlock extends PlantBlock {
         return AbstractBlock.OffsetType.XZ;
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     @Environment(EnvType.CLIENT)
     public long getRenderingSeed(BlockState state, BlockPos pos) {

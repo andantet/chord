@@ -7,6 +7,7 @@ public enum TripleBlockPart implements StringIdentifiable {
     MIDDLE,
     LOWER;
 
+    @Override
     public String toString() {
         return this.asString();
     }

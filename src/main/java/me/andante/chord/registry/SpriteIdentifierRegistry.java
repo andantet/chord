@@ -9,11 +9,7 @@ import net.minecraft.client.util.SpriteIdentifier;
 
 public class SpriteIdentifierRegistry {
     public static final SpriteIdentifierRegistry INSTANCE = new SpriteIdentifierRegistry();
-    private final List<SpriteIdentifier> identifiers;
-
-    private SpriteIdentifierRegistry() {
-        identifiers = new ArrayList<>();
-    }
+    private final List<SpriteIdentifier> identifiers = new ArrayList<>();
 
     public void addIdentifier(SpriteIdentifier sprite) {
         this.identifiers.add(sprite);

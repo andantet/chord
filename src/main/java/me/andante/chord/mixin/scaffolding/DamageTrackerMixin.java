@@ -28,7 +28,9 @@ public class DamageTrackerMixin {
         Optional<BlockPos> optional = this.entity.getClimbingPos();
         if (optional.isPresent()) {
             Block block = this.entity.world.getBlockState(optional.get()).getBlock();
-            if (block instanceof CScaffoldingBlock) this.fallDeathSuffix = Registry.BLOCK.getId(block).toString();
+            if (block instanceof CScaffoldingBlock) {
+                this.fallDeathSuffix = Registry.BLOCK.getId(block).toString();
+            }
         }
     }
 }

@@ -29,11 +29,6 @@ public class CBoatEntity extends BoatEntity {
     }
 
     @Override
-    protected void initDataTracker() {
-        super.initDataTracker();
-    }
-
-    @Override
     public Item asItem() {
         return boatInfo.asItem();
     }
@@ -42,8 +37,8 @@ public class CBoatEntity extends BoatEntity {
         return boatInfo.asPlanks();
     }
 
-    public Identifier getBoatSkin() {
-        return boatInfo.getSkin();
+    public Identifier getBoatTexture() {
+        return boatInfo.getTexture();
     }
 
     @Override

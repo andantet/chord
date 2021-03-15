@@ -15,6 +15,8 @@ import net.minecraft.client.util.SpriteIdentifier;
 public class SignBlockEntityRendererMixin {
     @Inject(method = "getModelTexture", at = @At("HEAD"), cancellable = true)
     private static void injectCustomTexture(Block block, CallbackInfoReturnable<SpriteIdentifier> cir) {
-        if (block instanceof CSign) cir.setReturnValue(new SpriteIdentifier(TexturedRenderLayers.SIGNS_ATLAS_TEXTURE, ((CSign) block).getTexture()));
+        if (block instanceof CSign) {
+            cir.setReturnValue(new SpriteIdentifier(TexturedRenderLayers.SIGNS_ATLAS_TEXTURE, ((CSign) block).getTexture()));
+        }
     }
 }
