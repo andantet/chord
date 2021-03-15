@@ -20,8 +20,9 @@
     "supporters_tags.WitherRoseBlockMixin"
   ],
   "client": [
-    "client.BoatEntityRendererMixin",
+    "client.CreativeInventoryScreenMixin",
 
+    "client.BoatEntityRendererMixin",
     "client.SignBlockEntityRendererMixin",
     "client.TexturedRenderLayersMixin"
   ],
