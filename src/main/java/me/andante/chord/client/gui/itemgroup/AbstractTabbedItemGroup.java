@@ -29,7 +29,7 @@ public abstract class AbstractTabbedItemGroup extends ItemGroup {
         this.id = id;
     }
     protected AbstractTabbedItemGroup(String modId) {
-        this(new Identifier(Chord.MOD_ID, "title"));
+        this(new Identifier(modId, "title"));
     }
 
     private static int getItemGroupIndex() {
