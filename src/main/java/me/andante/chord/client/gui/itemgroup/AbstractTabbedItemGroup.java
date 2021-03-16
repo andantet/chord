@@ -58,7 +58,11 @@ public abstract class AbstractTabbedItemGroup extends ItemGroup {
             } else if (tab.getId().getPath().equals("all")) {
                 for (ItemGroupTab i : tabs) {
                     if (i.matches(item) || item.isIn(this)) {
-                        stacks.add(new ItemStack(item));
+                        if (item instanceof TabbedItemGroupAppendLogic) {
+                            ((TabbedItemGroupAppendLogic)item).appendStacks(this, stacks);
+                        } else {
+                            stacks.add(new ItemStack(item));
+                        }
                         break;
                     }
                 }
