@@ -51,7 +51,7 @@ public abstract class AbstractTabbedItemGroup extends ItemGroup {
             ItemGroupTab tab = this.getSelectedItemTab();
             if (tab.matches(item)) {
                 if (item instanceof TabbedItemGroupAppendLogic) {
-                    ((TabbedItemGroupAppendLogic)item).appendStacks(this, stacks);
+                    ((TabbedItemGroupAppendLogic)item).appendStacksToTab(this, stacks);
                 } else {
                     stacks.add(new ItemStack(item));
                 }
@@ -59,7 +59,7 @@ public abstract class AbstractTabbedItemGroup extends ItemGroup {
                 for (ItemGroupTab i : tabs) {
                     if (i.matches(item) || item.isIn(this)) {
                         if (item instanceof TabbedItemGroupAppendLogic) {
-                            ((TabbedItemGroupAppendLogic)item).appendStacks(this, stacks);
+                            ((TabbedItemGroupAppendLogic)item).appendStacksToTab(this, stacks);
                         } else {
                             stacks.add(new ItemStack(item));
                         }
