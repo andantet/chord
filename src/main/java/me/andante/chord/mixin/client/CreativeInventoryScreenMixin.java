@@ -1,8 +1,8 @@
 package me.andante.chord.mixin.client;
 
 import com.google.common.collect.Lists;
-import me.andante.chord.client.gui.itemgroup.AbstractTabbedItemGroup;
-import me.andante.chord.client.gui.itemgroup.ItemGroupTabWidget;
+import me.andante.chord.item.item_group.AbstractTabbedItemGroup;
+import me.andante.chord.item.item_group.ItemGroupTabWidget;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
@@ -59,5 +59,12 @@ public abstract class CreativeInventoryScreenMixin extends AbstractInventoryScre
                 renderTooltip(matrixStack, b.getMessage(), mouseX, mouseY);
             }
         });
+    }
+
+    @Inject(method = "renderTabIcon", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screen/ingame/CreativeInventoryScreen;drawTexture(Lnet/minecraft/client/util/math/MatrixStack;IIIIII)V", shift = At.Shift.BEFORE))
+    protected void renderTabIcon(MatrixStack matrixStack, ItemGroup itemGroup, CallbackInfo ci) {
+        if (itemGroup instanceof AbstractTabbedItemGroup) {
+            MinecraftClient.getInstance().getTextureManager().bindTexture(((AbstractTabbedItemGroup) itemGroup).getIconBackgroundTexture());
+        }
     }
 }

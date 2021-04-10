@@ -1,6 +1,10 @@
 package me.andante.chord.client.config;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+
 @SuppressWarnings("unused")
+@Environment(EnvType.CLIENT)
 public class EnumOption<T extends Enum<?>> extends Option<T> {
     protected final Class<T> clazz;
 

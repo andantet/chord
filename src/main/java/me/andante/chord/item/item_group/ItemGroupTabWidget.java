@@ -1,8 +1,7 @@
-package me.andante.chord.client.gui.itemgroup;
+package me.andante.chord.item.item_group;
 
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
-import me.andante.chord.Chord;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.ingame.CreativeInventoryScreen;
 import net.minecraft.client.gui.widget.ButtonWidget;
@@ -11,21 +10,21 @@ import net.minecraft.util.Identifier;
 
 @SuppressWarnings("unused")
 public class ItemGroupTabWidget extends ButtonWidget {
-    public final Identifier texture;
+    public Identifier texture;
     private final ItemGroupTab tab;
     public boolean isSelected = false;
 
-    public ItemGroupTabWidget(int x, int y, ItemGroupTab tab, PressAction onPress) {
+    public ItemGroupTabWidget(int x, int y, ItemGroupTab tab, PressAction onPress, Identifier texture) {
         super(x, y, 22, 22, tab.getTranslationKey(), onPress);
         this.tab = tab;
-        this.texture = new Identifier(Chord.MOD_ID, "textures/gui/item_group_tabs.png");
+        this.texture = texture;
     }
-    public ItemGroupTabWidget(int x, int y, int selectedTabIndex, AbstractTabbedItemGroup tab, CreativeInventoryScreen screen) {
+    public ItemGroupTabWidget(int x, int y, int selectedTabIndex, AbstractTabbedItemGroup tab, CreativeInventoryScreen screen, Identifier texture) {
         this(x - 24, (y + 12) + (selectedTabIndex * 24), tab.getTabs().get(selectedTabIndex), (btn) -> {
             tab.setSelectedTabIndex(selectedTabIndex);
             MinecraftClient.getInstance().openScreen(screen);
             ((ItemGroupTabWidget) btn).isSelected = true;
-        });
+        }, texture);
     }
 
     @Override

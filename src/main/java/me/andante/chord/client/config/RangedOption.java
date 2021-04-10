@@ -1,6 +1,10 @@
 package me.andante.chord.client.config;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+
 @SuppressWarnings("unused")
+@Environment(EnvType.CLIENT)
 public class RangedOption<T extends Number> extends Option<T> {
     protected final T min;
     protected final T max;

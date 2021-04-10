@@ -1,9 +1,10 @@
 package me.andante.chord.client.config;
 
-/**
- * A configuration option.
- */
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+
 @SuppressWarnings("unused")
+@Environment(EnvType.CLIENT)
 public class Option<T> {
     protected final String id;
 
