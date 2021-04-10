@@ -46,7 +46,10 @@ public abstract class AbstractTabbedItemGroup extends ItemGroup {
         return createTab(item, id, TagRegistry.item(new Identifier(Chord.MOD_ID, "creative_tabs/" + this.id.getNamespace() + "/" + id)));
     }
     protected ItemGroupTab createTab(ItemConvertible item, String id, Tag<Item> tag) {
-        return new ItemGroupTab(new ItemStack(item), new Identifier(this.id.getNamespace(), id), tag);
+        return createTab(new ItemStack(item), id, tag);
+    }
+    protected ItemGroupTab createTab(ItemStack stack, String id, Tag<Item> tag) {
+        return new ItemGroupTab(stack, new Identifier(this.id.getNamespace(), id), tag);
     }
 
     @Override
@@ -87,7 +90,7 @@ public abstract class AbstractTabbedItemGroup extends ItemGroup {
     }
 
     protected ItemGroupTab createAllTab() {
-        return new ItemGroupTab(getIcon(), new Identifier(id.getNamespace(), "all"), null);
+        return createTab(getIcon(), "all", null);
     }
 
     public ItemGroupTab getSelectedItemTab() {
