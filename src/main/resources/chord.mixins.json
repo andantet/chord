@@ -3,27 +3,14 @@
   "package": "me.andante.chord.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "BlockEntityTypeMixin",
-
-    "scaffolding.DamageTrackerMixin",
-    "scaffolding.LivingEntityMixin",
-
-    "supporters_tags.AttachedStemBlockMixin",
-    "supporters_tags.CropBlockMixin",
-    "supporters_tags.DeadBushBlockMixin",
-    "supporters_tags.FungusBlockMixin",
-    "supporters_tags.NetherWartBlockMixin",
-    "supporters_tags.PlantBlockMixin",
-    "supporters_tags.RootsBlockMixin",
-    "supporters_tags.SproutsBlockMixin",
-    "supporters_tags.StemBlockMixin",
-    "supporters_tags.WitherRoseBlockMixin"
+    "BlockEntityTypeMixin", "scaffolding.DamageTrackerMixin", "scaffolding.LivingEntityMixin",
+    "supporters_tags.AttachedStemBlockMixin", "supporters_tags.CropBlockMixin", "supporters_tags.DeadBushBlockMixin",
+    "supporters_tags.FeatureMixin", "supporters_tags.FungusBlockMixin", "supporters_tags.NetherWartBlockMixin",
+    "supporters_tags.PlantBlockMixin", "supporters_tags.RootsBlockMixin", "supporters_tags.SproutsBlockMixin",
+    "supporters_tags.StemBlockMixin", "supporters_tags.WitherRoseBlockMixin"
   ],
   "client": [
-    "client.CreativeInventoryScreenMixin",
-
-    "client.BoatEntityRendererMixin",
-    "client.SignBlockEntityRendererMixin",
+    "client.BoatEntityRendererMixin", "client.CreativeInventoryScreenMixin", "client.SignBlockEntityRendererMixin",
     "client.TexturedRenderLayersMixin"
   ],
   "server": [],
