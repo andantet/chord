@@ -8,7 +8,7 @@ import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.rendereregistry.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.minecraft.client.color.world.BiomeColors;
-import net.minecraft.client.color.world.GrassColors;
+import net.minecraft.client.color.world.FoliageColors;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.TexturedRenderLayers;
 import net.minecraft.client.render.entity.BoatEntityRenderer;
@@ -40,8 +40,8 @@ public class CClientUtils {
     public static void registerLeafColors(WoodBlocks set) {
         if (set.getLeafItemColor() != -1) {
             ColorProviderRegistry.BLOCK.register((state, world, pos, tintIndex) -> world != null && pos != null
-                ? BiomeColors.getGrassColor(world, pos)
-                : GrassColors.getColor(0.5D, 1.0D), set.LEAVES);
+                ? BiomeColors.getFoliageColor(world, pos)
+                : FoliageColors.getDefaultColor(), set.LEAVES);
             ColorProviderRegistry.ITEM.register((stack, tintIndex) -> set.getLeafItemColor(), set.LEAVES);
         }
     }
