@@ -10,12 +10,9 @@ archivesBaseName = project.archives_base_name
 group = project.maven_group
 
 if (System.env.CI == "true") {
-    def branch
-    branch = System.env.GITHUB_REF
-    branch = branch.substring(branch.lastIndexOf("/") + 1)
-
-    version = "${project.mod_version}+a${System.env.GITHUB_RUN_NUMBER}.${branch}-fabric"
-} else {
+    version = "${project.mod_version}+a${System.env.GITHUB_RUN_NUMBER}.${System.env.GITHUB_REF.replaceAll("refs/heads/", "").replaceAll("/", "-")}"
+}
+else {
     version = "${project.mod_version}+${project.minecraft_version}-fabric"
 }
 
@@ -25,13 +22,11 @@ repositories {
 }
 
 dependencies {
-    // base
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
     mappings "net.fabricmc:yarn:${project.minecraft_version}+build.${project.yarn_build}:v2"
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
 
-    // runtime utils
     modRuntime "io.github.prospector:modmenu:${project.mod_menu_version}"
     modRuntime "com.github.joaoh1:OkZoomer:${project.okzoomer_version}"
     modRuntime "com.github.jellysquid3:sodium-fabric:${project.sodium_version}"
