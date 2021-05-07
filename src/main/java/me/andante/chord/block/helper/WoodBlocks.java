@@ -1,11 +1,6 @@
 package me.andante.chord.block.helper;
 
-import java.util.function.Supplier;
-
 import com.google.common.collect.ImmutableMap;
-
-import me.andante.chord.block.CSignBlock;
-import me.andante.chord.block.CWallSignBlock;
 import me.andante.chord.block.vanilla.*;
 import me.andante.chord.entity.boat.CBoatEntity;
 import me.andante.chord.entity.boat.CBoatInfo;
@@ -16,16 +11,7 @@ import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.fabricmc.fabric.api.tool.attribute.v1.FabricToolTags;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.ComposterBlock;
-import net.minecraft.block.FenceBlock;
-import net.minecraft.block.FenceGateBlock;
-import net.minecraft.block.LeavesBlock;
-import net.minecraft.block.PillarBlock;
-import net.minecraft.block.PressurePlateBlock;
-import net.minecraft.block.SlabBlock;
+import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.block.entity.SignBlockEntity;
 import net.minecraft.block.sapling.OakSaplingGenerator;
@@ -43,6 +29,8 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
+
+import java.util.function.Supplier;
 
 @SuppressWarnings("unused")
 public class WoodBlocks {

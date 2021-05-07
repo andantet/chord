@@ -1,16 +1,10 @@
 package me.andante.chord.block;
 
-import java.util.ArrayList;
-
 import me.andante.chord.block.enums.TripleBlockPart;
 import me.andante.chord.state.property.CProperties;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.PlantBlock;
+import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -24,6 +18,8 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
+
+import java.util.ArrayList;
 
 /**
  * A three-tall plant block

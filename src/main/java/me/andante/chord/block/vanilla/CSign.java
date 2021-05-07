@@ -1,4 +1,4 @@
-package me.andante.chord.block;
+package me.andante.chord.block.vanilla;
 
 import net.minecraft.util.Identifier;
 

@@ -1,9 +1,5 @@
 package me.andante.chord.item;
 
-import java.util.List;
-import java.util.function.Predicate;
-import java.util.function.Supplier;
-
 import me.andante.chord.entity.boat.CBoatEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -20,6 +16,10 @@ import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.RaycastContext;
 import net.minecraft.world.World;
+
+import java.util.List;
+import java.util.function.Predicate;
+import java.util.function.Supplier;
 
 public class CBoatItem extends Item {
     private static final Predicate<Entity> RIDERS = EntityPredicates.EXCEPT_SPECTATOR.and(Entity::collides);

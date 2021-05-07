@@ -2,6 +2,7 @@ package me.andante.chord.entity.boat;
 
 import io.netty.buffer.Unpooled;
 import me.andante.chord.Chord;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.vehicle.BoatEntity;
@@ -17,9 +18,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
-import net.fabricmc.fabric.api.network.ServerSidePacketRegistry;
 
-@SuppressWarnings("deprecation")
 public class CBoatEntity extends BoatEntity {
     private final CBoatInfo boatInfo;
 
@@ -105,7 +104,7 @@ public class CBoatEntity extends BoatEntity {
         buf.writeByte(MathHelper.floor(this.pitch * 256.0F / 360.0F));
         buf.writeByte(MathHelper.floor(this.yaw * 256.0F / 360.0F));
 
-        return ServerSidePacketRegistry.INSTANCE.toPacket(new Identifier(Chord.MOD_ID, "spawn_boat"), buf);
+        return ServerPlayNetworking.createS2CPacket(new Identifier(Chord.MOD_ID, "spawn_boat"), buf);
     }
 
     @Override

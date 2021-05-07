@@ -1,13 +1,13 @@
-package me.andante.chord.block;
+package me.andante.chord.block.vanilla;
 
-import net.minecraft.block.WallSignBlock;
+import net.minecraft.block.SignBlock;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.SignType;
 
-public class CWallSignBlock extends WallSignBlock implements CSign {
+public class CSignBlock extends SignBlock implements CSign {
     private final Identifier texture;
 
-    public CWallSignBlock(Identifier texture, Settings settings) {
+    public CSignBlock(Identifier texture, Settings settings) {
         super(settings, SignType.OAK);
         this.texture = texture;
     }

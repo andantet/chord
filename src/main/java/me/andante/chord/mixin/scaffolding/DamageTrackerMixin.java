@@ -1,6 +1,6 @@
 package me.andante.chord.mixin.scaffolding;
 
-import me.andante.chord.block.CScaffoldingBlock;
+import me.andante.chord.block.vanilla.CScaffoldingBlock;
 import net.minecraft.block.Block;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageTracker;
@@ -16,12 +16,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.Optional;
 
+@SuppressWarnings("unused")
 @Mixin(DamageTracker.class)
 public class DamageTrackerMixin {
-    @Shadow @Final
-    private LivingEntity entity;
-    @Shadow @Mutable
-    private String fallDeathSuffix;
+    @Shadow @Final private LivingEntity entity;
+    @Shadow @Mutable private String fallDeathSuffix;
 
     @Inject(method = "setFallDeathSuffix", at = @At("TAIL"))
     private void setFallDeathSuffix(CallbackInfo ci) {

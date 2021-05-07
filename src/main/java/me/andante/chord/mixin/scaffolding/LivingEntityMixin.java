@@ -1,6 +1,6 @@
 package me.andante.chord.mixin.scaffolding;
 
-import me.andante.chord.block.CScaffoldingBlock;
+import me.andante.chord.block.vanilla.CScaffoldingBlock;
 import net.minecraft.block.Block;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.math.Vec3d;

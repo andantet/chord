@@ -1,4 +1,4 @@
-package me.andante.chord.block;
+package me.andante.chord.block.vanilla;
 
 import net.minecraft.block.BambooBlock;
 import net.minecraft.block.BambooSaplingBlock;
@@ -14,10 +14,10 @@ import java.util.function.Supplier;
 
 @SuppressWarnings("unused")
 public class CBambooSaplingBlock extends BambooSaplingBlock {
-    private final Supplier<CBambooBlock> bambooBlock;
-    private final Supplier<CBambooSaplingBlock> saplingBlock;
+    private final Supplier<? extends CBambooBlock> bambooBlock;
+    private final Supplier<? extends CBambooSaplingBlock> saplingBlock;
 
-    public CBambooSaplingBlock(Supplier<CBambooBlock> bambooBlock, Supplier<CBambooSaplingBlock> saplingBlock, Settings settings) {
+    public CBambooSaplingBlock(Supplier<? extends CBambooBlock> bambooBlock, Supplier<? extends CBambooSaplingBlock> saplingBlock, Settings settings) {
         super(settings);
         this.bambooBlock = bambooBlock;
         this.saplingBlock = saplingBlock;

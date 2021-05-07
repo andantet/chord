@@ -1,6 +1,6 @@
 package me.andante.chord.item;
 
-import me.andante.chord.block.CScaffoldingBlock;
+import me.andante.chord.block.vanilla.CScaffoldingBlock;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ScaffoldingItem;

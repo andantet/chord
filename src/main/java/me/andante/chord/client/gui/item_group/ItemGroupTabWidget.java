@@ -1,17 +1,21 @@
-package me.andante.chord.item.item_group;
+package me.andante.chord.client.gui.item_group;
 
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
+import me.andante.chord.item.item_group.AbstractTabbedItemGroup;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.ingame.CreativeInventoryScreen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 
-@SuppressWarnings("unused")
+@Environment(EnvType.CLIENT)
 public class ItemGroupTabWidget extends ButtonWidget {
-    public Identifier texture;
     private final ItemGroupTab tab;
+    public final Identifier texture;
+
     public boolean isSelected = false;
 
     public ItemGroupTabWidget(int x, int y, ItemGroupTab tab, PressAction onPress, Identifier texture) {

@@ -2,12 +2,10 @@ package me.andante.chord.tag;
 
 import me.andante.chord.Chord;
 import net.fabricmc.fabric.api.tag.TagRegistry;
-import net.minecraft.block.Block;
+import net.minecraft.block.*;
 import net.minecraft.tag.BlockTags;
 import net.minecraft.tag.Tag;
 import net.minecraft.util.Identifier;
-
-import net.minecraft.block.*;
 import net.minecraft.world.gen.feature.Feature;
 
 public class CBlockTags {

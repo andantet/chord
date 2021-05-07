@@ -1,6 +1,9 @@
-package me.andante.chord.item.item_group;
+package me.andante.chord.client.gui.item_group;
 
 import me.andante.chord.Chord;
+import me.andante.chord.item.item_group.AbstractTabbedItemGroup;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.screen.ingame.CreativeInventoryScreen;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -8,6 +11,7 @@ import net.minecraft.tag.Tag;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 
+@Environment(EnvType.CLIENT)
 public class ItemGroupTab {
     private final Tag<Item> tag;
     private final ItemStack icon;

@@ -24,7 +24,7 @@
       "me.andante.chord.Chord"
     ],
     "client": [
-      "me.andante.chord.client.network.BoatSpawnNetworkHandler::register"
+      "me.andante.chord.ChordClient"
     ],
     "server": []
   },

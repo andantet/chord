@@ -1,4 +1,4 @@
-package me.andante.chord.block;
+package me.andante.chord.block.vanilla;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -20,6 +20,7 @@ import java.util.Random;
  * @see ScaffoldingBlock
  */
 public class CScaffoldingBlock extends ScaffoldingBlock {
+    @SuppressWarnings("unused")
     public CScaffoldingBlock(Settings settings) {
         super(settings);
     }

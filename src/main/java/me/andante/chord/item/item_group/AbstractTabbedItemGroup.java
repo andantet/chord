@@ -2,6 +2,7 @@ package me.andante.chord.item.item_group;
 
 import com.google.common.collect.Lists;
 import me.andante.chord.Chord;
+import me.andante.chord.client.gui.item_group.ItemGroupTab;
 import me.andante.chord.item.TabbedItemGroupAppendLogic;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
