@@ -1,4 +1,4 @@
-package me.andante.chord.util;
+package me.andante.chord.client.util;
 
 import me.andante.chord.block.helper.WoodBlocks;
 import me.andante.chord.registry.SpriteIdentifierRegistry;
@@ -34,7 +34,7 @@ public class CClientUtils {
     }
     public static void registerRenderLayers(WoodBlocks set) {
         BlockRenderLayerMap brlmInstance = BlockRenderLayerMap.INSTANCE;
-        brlmInstance.putBlocks(RenderLayer.getCutout(), set.DOOR, set.TRAPDOOR, set.SAPLING);
+        brlmInstance.putBlocks(RenderLayer.getCutout(), set.DOOR, set.TRAPDOOR, set.SAPLING, set.POTTED_SAPLING);
         brlmInstance.putBlock(set.LEAVES, RenderLayer.getCutoutMipped());
     }
     public static void registerLeafColors(WoodBlocks set) {
