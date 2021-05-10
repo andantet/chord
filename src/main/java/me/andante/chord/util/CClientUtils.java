@@ -1,7 +1,6 @@
 package me.andante.chord.util;
 
 import me.andante.chord.block.helper.WoodBlocks;
-import me.andante.chord.registry.SpriteIdentifierRegistry;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
@@ -10,33 +9,41 @@ import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.minecraft.client.color.world.BiomeColors;
 import net.minecraft.client.color.world.GrassColors;
 import net.minecraft.client.render.RenderLayer;
-import net.minecraft.client.render.TexturedRenderLayers;
 import net.minecraft.client.render.entity.BoatEntityRenderer;
-import net.minecraft.client.util.SpriteIdentifier;
 
 @SuppressWarnings("unused")
 @Environment(EnvType.CLIENT)
 public class CClientUtils {
+    /**
+     * Run all registry helpers for a wood set.
+     */
     public static void registerWoodBlocks(WoodBlocks... woodBlocks) {
         for (WoodBlocks set : woodBlocks) {
-            CClientUtils.addSpriteIdentifier(set);
             CClientUtils.registerBoatRenderer(set);
             CClientUtils.registerRenderLayers(set);
             CClientUtils.registerLeafColors(set);
         }
     }
 
-    public static void addSpriteIdentifier(WoodBlocks set) {
-        SpriteIdentifierRegistry.INSTANCE.addIdentifier(new SpriteIdentifier(TexturedRenderLayers.SIGNS_ATLAS_TEXTURE, set.getSignTextureIdentifier()));
-    }
+    /**
+     * Registers a wood set's boat renderer.
+     */
     public static void registerBoatRenderer(WoodBlocks set) {
         EntityRendererRegistry.INSTANCE.register(set.BOAT_ENTITY, BoatEntityRenderer::new);
     }
+
+    /**
+     * Registers a wood set's block render layers.
+     */
     public static void registerRenderLayers(WoodBlocks set) {
         BlockRenderLayerMap brlmInstance = BlockRenderLayerMap.INSTANCE;
         brlmInstance.putBlocks(RenderLayer.getCutout(), set.DOOR, set.TRAPDOOR, set.SAPLING);
         brlmInstance.putBlock(set.LEAVES, RenderLayer.getCutoutMipped());
     }
+
+    /**
+     * Register a wood set's block and item leaf colors.
+     */
     public static void registerLeafColors(WoodBlocks set) {
         if (set.getLeafItemColor() != -1) {
             ColorProviderRegistry.BLOCK.register((state, world, pos, tintIndex) -> world != null && pos != null

@@ -1,38 +1,35 @@
 package me.andante.chord.client.network;
 
-import java.util.UUID;
-
-import me.andante.chord.Chord;
+import me.andante.chord.network.MarblesNetwork;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.network.ClientSidePacketRegistry;
-import net.fabricmc.fabric.api.network.PacketContext;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
+import net.fabricmc.fabric.api.networking.v1.PacketSender;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.network.ClientPlayNetworkHandler;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.network.PacketByteBuf;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
-@SuppressWarnings({"deprecation","unused"})
+import java.util.UUID;
+
 @Environment(EnvType.CLIENT)
 public class BoatSpawnNetworkHandler {
-    public void register() {
-        ClientSidePacketRegistry.INSTANCE.register(new Identifier(Chord.MOD_ID, "spawn_boat"), BoatSpawnNetworkHandler::accept);
+    static {
+        ClientPlayNetworking.registerGlobalReceiver(MarblesNetwork.SPAWN_BOAT_PACKET_ID, BoatSpawnNetworkHandler::accept);
     }
 
-    public static void accept(PacketContext context, PacketByteBuf buffer) {
-        final MinecraftClient client = MinecraftClient.getInstance();
-
-        int id = buffer.readVarInt();
-        UUID uuid = buffer.readUuid();
-        EntityType<?> type = Registry.ENTITY_TYPE.get(buffer.readVarInt());
-        double x = buffer.readDouble();
-        double y = buffer.readDouble();
-        double z = buffer.readDouble();
-        byte pitch = buffer.readByte();
-        byte yaw = buffer.readByte();
+    public static void accept(MinecraftClient client, ClientPlayNetworkHandler handler, PacketByteBuf buf, PacketSender sender) {
+        int id = buf.readVarInt();
+        UUID uuid = buf.readUuid();
+        EntityType<?> type = Registry.ENTITY_TYPE.get(buf.readVarInt());
+        double x = buf.readDouble();
+        double y = buf.readDouble();
+        double z = buf.readDouble();
+        byte pitch = buf.readByte();
+        byte yaw = buf.readByte();
 
         if (client.isOnThread()) {
             spawn(client, id, uuid, type, x, y, z, pitch, yaw);
@@ -43,24 +40,19 @@ public class BoatSpawnNetworkHandler {
 
     private static void spawn(MinecraftClient client, int id, UUID uuid, EntityType<?> type, double x, double y, double z, byte pitch, byte yaw) {
         ClientWorld world = client.world;
+        if (world != null) {
+            Entity entity = type.create(world);
+            if (entity != null) {
 
-        if (world == null) {
-            return;
+                entity.setEntityId(id);
+                entity.setUuid(uuid);
+                entity.updatePosition(x, y, z);
+                entity.updateTrackedPosition(x, y, z);
+                entity.setPitch(pitch * 360 / 256F);
+                entity.setYaw(yaw * 360 / 256F);
+
+                world.addEntity(entity.getId(), entity);
+            }
         }
-
-        Entity entity = type.create(world);
-
-        if (entity == null) {
-            return;
-        }
-
-        entity.setEntityId(id);
-        entity.setUuid(uuid);
-        entity.updatePosition(x, y, z);
-        entity.updateTrackedPosition(x, y, z);
-        entity.pitch = pitch * 360 / 256F;
-        entity.yaw = yaw * 360 / 256F;
-
-        world.addEntity(entity.getId(), entity);
     }
 }

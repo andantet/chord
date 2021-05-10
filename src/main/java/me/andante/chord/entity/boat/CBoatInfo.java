@@ -7,13 +7,13 @@ import net.minecraft.util.Identifier;
 public class CBoatInfo {
     private final Item item;
     private final Item planks;
-    private final Identifier skin;
+    private final Identifier texture;
     private final BoatEntity.Type vanilla;
 
-    public CBoatInfo(Item item, Item planks, Identifier skin, BoatEntity.Type vanilla) {
+    public CBoatInfo(Item item, Item planks, Identifier texture, BoatEntity.Type vanilla) {
         this.item = item;
         this.planks = planks;
-        this.skin = skin;
+        this.texture = texture;
         this.vanilla = vanilla;
     }
 
@@ -25,11 +25,11 @@ public class CBoatInfo {
         return planks;
     }
 
-    public Identifier getSkin() {
-        return skin;
+    public Identifier getTexture() {
+        return this.texture;
     }
 
     public BoatEntity.Type getVanillaType() {
-        return vanilla;
+        return this.vanilla;
     }
 }

@@ -17,10 +17,10 @@ import java.util.function.Supplier;
 
 @SuppressWarnings("unused")
 public class CBambooBlock extends BambooBlock {
-    private final Supplier<CBambooBlock> bambooBlock;
-    private final Supplier<CBambooSaplingBlock> saplingBlock;
+    private final Supplier<? extends CBambooBlock> bambooBlock;
+    private final Supplier<? extends CBambooSaplingBlock> saplingBlock;
 
-    public CBambooBlock(Supplier<CBambooBlock> bambooBlock, Supplier<CBambooSaplingBlock> saplingBlock, Settings settings) {
+    public CBambooBlock(Supplier<? extends CBambooBlock> bambooBlock, Supplier<? extends CBambooSaplingBlock> saplingBlock, Settings settings) {
         super(settings);
         this.bambooBlock = bambooBlock;
         this.saplingBlock = saplingBlock;
@@ -32,12 +32,12 @@ public class CBambooBlock extends BambooBlock {
         if (!fluidState.isEmpty()) {
             return null;
         } else {
-            BlockState blockStateDown = ctx.getWorld().getBlockState(ctx.getBlockPos().down());
-            if (blockStateDown.isIn(BlockTags.BAMBOO_PLANTABLE_ON)) {
-                if (blockStateDown.isOf(this.getSaplingBlock())) {
+            BlockState stateDown = ctx.getWorld().getBlockState(ctx.getBlockPos().down());
+            if (stateDown.isIn(BlockTags.BAMBOO_PLANTABLE_ON)) {
+                if (stateDown.isOf(this.getSaplingBlock())) {
                     return this.getDefaultState().with(AGE, 0);
-                } else if (blockStateDown.isOf(this.getBambooBlock())) {
-                    int age = blockStateDown.get(AGE) > 0 ? 1 : 0;
+                } else if (stateDown.isOf(this.getBambooBlock())) {
+                    int age = stateDown.get(AGE) > 0 ? 1 : 0;
                     return this.getDefaultState().with(AGE, age);
                 } else {
                     BlockState blockStateUp = ctx.getWorld().getBlockState(ctx.getBlockPos().up());

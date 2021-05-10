@@ -2,13 +2,15 @@ package me.andante.chord.entity.boat;
 
 import io.netty.buffer.Unpooled;
 import me.andante.chord.Chord;
+import me.andante.chord.network.MarblesNetwork;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.vehicle.BoatEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.sound.SoundEvents;
@@ -18,40 +20,33 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
-import net.fabricmc.fabric.api.network.ServerSidePacketRegistry;
 
-@SuppressWarnings("deprecation")
 public class CBoatEntity extends BoatEntity {
-    private final CBoatInfo boatInfo;
+    private final CBoatInfo info;
 
-    public CBoatEntity(EntityType<? extends CBoatEntity> type, World world, CBoatInfo boatInfo) {
+    public CBoatEntity(EntityType<? extends CBoatEntity> type, World world, CBoatInfo info) {
         super(type, world);
-        this.boatInfo = boatInfo;
-    }
-
-    @Override
-    protected void initDataTracker() {
-        super.initDataTracker();
+        this.info = info;
     }
 
     @Override
     public Item asItem() {
-        return boatInfo.asItem();
+        return this.info.asItem();
     }
 
     public Item asPlanks() {
-        return boatInfo.asPlanks();
+        return this.info.asPlanks();
     }
 
-    public Identifier getBoatSkin() {
-        return boatInfo.getSkin();
+    public Identifier getBoatTexture() {
+        return this.info.getTexture();
     }
 
     @Override
-    protected void writeCustomDataToTag(CompoundTag tag) {}
+    protected void writeCustomDataToNbt(NbtCompound tag) {}
 
     @Override
-    protected void readCustomDataFromTag(CompoundTag tag) {}
+    protected void readCustomDataFromNbt(NbtCompound tag) {}
 
     private boolean isOnLand() {
         return getPaddleSoundEvent() == SoundEvents.ENTITY_BOAT_PADDLE_LAND;
@@ -107,10 +102,10 @@ public class CBoatEntity extends BoatEntity {
         buf.writeDouble(this.getX());
         buf.writeDouble(this.getY());
         buf.writeDouble(this.getZ());
-        buf.writeByte(MathHelper.floor(this.pitch * 256.0F / 360.0F));
-        buf.writeByte(MathHelper.floor(this.yaw * 256.0F / 360.0F));
+        buf.writeByte(MathHelper.floor(this.getPitch() * 256.0F / 360.0F));
+        buf.writeByte(MathHelper.floor(this.getYaw() * 256.0F / 360.0F));
 
-        return ServerSidePacketRegistry.INSTANCE.toPacket(new Identifier(Chord.MOD_ID, "spawn_boat"), buf);
+        return ServerPlayNetworking.createS2CPacket(MarblesNetwork.SPAWN_BOAT_PACKET_ID, buf);
     }
 
     @Override
@@ -120,6 +115,6 @@ public class CBoatEntity extends BoatEntity {
 
     @Override
     public BoatEntity.Type getBoatType() {
-        return boatInfo.getVanillaType();
+        return this.info.getVanillaType();
     }
 }

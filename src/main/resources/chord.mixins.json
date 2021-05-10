@@ -4,13 +4,12 @@
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "BlockEntityTypeMixin",
-
     "scaffolding.DamageTrackerMixin",
     "scaffolding.LivingEntityMixin",
-
     "supporters_tags.AttachedStemBlockMixin",
     "supporters_tags.CropBlockMixin",
     "supporters_tags.DeadBushBlockMixin",
+    "supporters_tags.FeatureMixin",
     "supporters_tags.FungusBlockMixin",
     "supporters_tags.NetherWartBlockMixin",
     "supporters_tags.PlantBlockMixin",
@@ -21,9 +20,9 @@
   ],
   "client": [
     "client.BoatEntityRendererMixin",
-
-    "client.SignBlockEntityRendererMixin",
-    "client.TexturedRenderLayersMixin"
+    "client.CreativeInventoryScreenMixin",
+    "client.TexturedRenderLayersMixin",
+    "client.EntityModelLayersMixin"
   ],
   "server": [],
   "injectors": {

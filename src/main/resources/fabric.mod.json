@@ -6,7 +6,7 @@
 
   "name": "Chord",
   "description": "Simple API for general stuff in Fabric",
-  "icon": "pack.png",
+  "icon": "assets/chord/textures/icon.png",
 
   "authors": [
     "Andante"
@@ -24,17 +24,18 @@
       "me.andante.chord.Chord"
     ],
     "client": [
-      "me.andante.chord.client.network.BoatSpawnNetworkHandler::register"
+      "me.andante.chord.ChordClient"
     ],
     "server": []
   },
   "mixins": [
     "chord.mixins.json"
   ],
+  "accessWidener": "chord.accesswidener",
   "depends": {
     "fabricloader": ">=0.11.0",
-    "fabric": ">=0.30.0",
-    "minecraft": ">=1.17-alpha.21.6.a"
+    "fabric": ">=0.32.0",
+    "minecraft": ">=1.17-alpha.21.10.a"
   },
   "custom": {
     "modmenu": {

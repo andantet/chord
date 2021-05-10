@@ -18,10 +18,8 @@ import java.util.Optional;
 
 @Mixin(DamageTracker.class)
 public class DamageTrackerMixin {
-    @Shadow @Final
-    private LivingEntity entity;
-    @Shadow @Mutable
-    private String fallDeathSuffix;
+    @Shadow @Final private LivingEntity entity;
+    @SuppressWarnings("unused") @Shadow @Mutable private String fallDeathSuffix;
 
     @Inject(method = "setFallDeathSuffix", at = @At("TAIL"))
     private void setFallDeathSuffix(CallbackInfo ci) {

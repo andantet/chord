@@ -2,25 +2,15 @@ package me.andante.chord.block.enums;
 
 import net.minecraft.util.StringIdentifiable;
 
+import java.util.Locale;
+
 public enum TripleBlockPart implements StringIdentifiable {
     UPPER,
     MIDDLE,
     LOWER;
 
-    public String toString() {
-        return this.asString();
-    }
-
     @Override
     public String asString() {
-        switch (this) {
-            case UPPER:
-                return "upper";
-            case MIDDLE:
-                return "middle";
-            case LOWER:
-            default:
-                return "lower";
-        }
+        return this.toString().toLowerCase(Locale.ROOT);
     }
 }

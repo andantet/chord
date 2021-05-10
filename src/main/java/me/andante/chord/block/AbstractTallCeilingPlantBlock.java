@@ -101,8 +101,9 @@ public abstract class AbstractTallCeilingPlantBlock extends PlantBlock {
         return OffsetType.XZ;
     }
 
-    @Override
+    @SuppressWarnings("deprecation")
     @Environment(EnvType.CLIENT)
+    @Override
     public long getRenderingSeed(BlockState state, BlockPos pos) {
         return MathHelper.hashCode(pos.getX(), pos.down(state.get(HALF) == DoubleBlockHalf.LOWER ? 0 : 1).getY(), pos.getZ());
     }

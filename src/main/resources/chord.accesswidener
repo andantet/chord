@@ -1,0 +1,6 @@
+accessWidener v1        named
+
+accessible    method    net/minecraft/item/Item                                             isIn        (Lnet/minecraft/item/ItemGroup;)Z
+accessible    method    net/minecraft/world/gen/feature/Feature                             isStone     (Lnet/minecraft/block/BlockState;)Z
+accessible    field     net/minecraft/client/gui/screen/ingame/CreativeInventoryScreen      TEXTURE     Lnet/minecraft/util/Identifier;
+accessible    method    net/minecraft/util/SignType                                         register    (Lnet/minecraft/util/SignType;)Lnet/minecraft/util/SignType;
