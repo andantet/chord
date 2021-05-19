@@ -1,12 +1,12 @@
 plugins {
-    id 'fabric-loom' version '0.7-SNAPSHOT'
+    id 'fabric-loom' version '0.8-SNAPSHOT'
     id 'maven-publish'
 }
 
-sourceCompatibility = JavaVersion.VERSION_1_8
-targetCompatibility = JavaVersion.VERSION_1_8
+sourceCompatibility = JavaVersion.VERSION_16
+targetCompatibility = JavaVersion.VERSION_16
 
-archivesBaseName = project.archives_base_name
+archivesBaseName = project.mod_id
 group = project.maven_group
 
 if (System.env.CI == "true") {
@@ -33,7 +33,7 @@ dependencies {
 }
 
 loom {
-    accessWidener "src/main/resources/${project.archives_base_name}.accesswidener"
+    accessWidener "src/main/resources/${project.mod_id}.accesswidener"
 }
 
 processResources {
@@ -46,6 +46,9 @@ processResources {
 
 tasks.withType(JavaCompile).configureEach {
     it.options.encoding = "UTF-8"
+
+    // Minecraft 1.17 (21w19a) upwards uses Java 16.
+    it.options.release = 16
 }
 
 java {}
@@ -61,17 +64,6 @@ publishing {
         mavenJava(MavenPublication) {
             artifact(remapJar) {
                 builtBy remapJar
-            }
-        }
-    }
-
-    repositories {
-        maven {
-            name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/andantedevs/chord")
-            credentials {
-                username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
-                password = project.findProperty("gpr.key") ?: System.getenv("PASSWORD")
             }
         }
     }

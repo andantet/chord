@@ -34,8 +34,10 @@
   "accessWidener": "chord.accesswidener",
   "depends": {
     "fabricloader": ">=0.11.0",
-    "fabric": ">=0.32.0",
-    "minecraft": ">=1.17-alpha.21.10.a"
+    "fabric": ">=0.34.0",
+    "minecraft": "1.17.x",
+
+    "java": "16"
   },
   "custom": {
     "modmenu": {

@@ -14,7 +14,7 @@ public class LivingEntityMixin {
     @Inject(method = "applyClimbingSpeed", at = @At("RETURN"), cancellable = true)
     private void applyClimbingSpeed(Vec3d motion, CallbackInfoReturnable<Vec3d> cir) {
         LivingEntity $this = LivingEntity.class.cast(this);
-        Block block = $this.getBlockState().getBlock();
+        Block block = $this.world.getBlockState($this.getBlockPos()).getBlock();
         if ($this.isClimbing() && block instanceof CScaffoldingBlock && $this.isHoldingOntoLadder()) {
             cir.setReturnValue(cir.getReturnValue().add(0.0D, -0.15000000596046448D, 0.0D));
         }

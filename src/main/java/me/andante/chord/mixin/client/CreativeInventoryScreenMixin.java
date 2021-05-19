@@ -41,7 +41,7 @@ public abstract class CreativeInventoryScreenMixin extends AbstractInventoryScre
             }
 
             for (int i = 0; i < tab.getTabs().size(); i++) {
-                ItemGroupTabWidget tabWidget = tab.getTabs().get(i).createWidget(this.field_2776 /* x */, this.field_2800 /* y */, i, tab, CreativeInventoryScreen.class.cast(this));
+                ItemGroupTabWidget tabWidget = tab.getTabs().get(i).createWidget(this.x, this.y, i, tab, CreativeInventoryScreen.class.cast(this));
 
                 if (i == tab.getSelectedTabIndex()) {
                     tabWidget.isSelected = true;

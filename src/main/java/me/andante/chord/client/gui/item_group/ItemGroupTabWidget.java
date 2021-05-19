@@ -49,7 +49,7 @@ public class ItemGroupTabWidget extends ButtonWidget {
         RenderSystem.blendFunc(GlStateManager.SrcFactor.SRC_ALPHA, GlStateManager.DstFactor.ONE_MINUS_SRC_ALPHA);
 
         this.drawTexture(matrices, this.x, this.y, 0, this.getYImage(this.isHovered()) * height, this.width, this.height);
-        this.renderBg(matrices, client, mouseX, mouseY);
+        this.renderBackground(matrices, client, mouseX, mouseY);
 
         client.getItemRenderer().renderInGui(tab.getIcon(), this.x + 3, this.y + 3);
     }
