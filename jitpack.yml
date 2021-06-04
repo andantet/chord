@@ -1,5 +1,4 @@
-jdk:
-  - openjdk16
 before_install:
-  - sdk install java 16.0.0-open
-  - sdk use java 16.0.0-open
+  - wget https://github.com/sormuras/bach/raw/master/install-jdk.sh
+  - source install-jdk.sh --feature 16
+  - jshell --version
