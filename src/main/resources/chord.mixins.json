@@ -21,8 +21,10 @@
   "client": [
     "client.BoatEntityRendererMixin",
     "client.CreativeInventoryScreenMixin",
-    "client.TexturedRenderLayersMixin",
-    "client.EntityModelLayersMixin"
+    "client.EntityModelLayersMixin",
+    "client.ScreenAccessor",
+    "client.CreativeInventoryScreenAccessor",
+    "client.TexturedRenderLayersMixin"
   ],
   "server": [],
   "injectors": {

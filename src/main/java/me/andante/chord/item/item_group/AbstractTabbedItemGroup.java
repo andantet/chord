@@ -87,7 +87,7 @@ public abstract class AbstractTabbedItemGroup extends ItemGroup {
 
     @Environment(EnvType.CLIENT)
     public Identifier getIconBackgroundTexture() {
-        return net.minecraft.client.gui.screen.ingame.CreativeInventoryScreen.TEXTURE; // static import to prevent server-side crash;
+        return me.andante.chord.mixin.client.CreativeInventoryScreenAccessor.getTEXTURE(); // static import to prevent server-side crash;
     }
 
     protected ItemGroupTab createAllTab() {

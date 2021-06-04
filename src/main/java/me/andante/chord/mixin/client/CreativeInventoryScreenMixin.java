@@ -22,7 +22,7 @@ import java.util.List;
 @Environment(EnvType.CLIENT)
 @Mixin(CreativeInventoryScreen.class)
 public abstract class CreativeInventoryScreenMixin extends AbstractInventoryScreen<CreativeInventoryScreen.CreativeScreenHandler> {
-    private final List<ItemGroupTabWidget> marbles_tabButtons = Lists.newArrayList();
+    private final List<ItemGroupTabWidget> chord_tabWidgets = Lists.newArrayList();
 
     @SuppressWarnings("unused")
     public CreativeInventoryScreenMixin(CreativeInventoryScreen.CreativeScreenHandler screenHandler, PlayerInventory inventory, Text text) {
@@ -31,31 +31,30 @@ public abstract class CreativeInventoryScreenMixin extends AbstractInventoryScre
 
     @Inject(at = @At("HEAD"), method = "setSelectedTab(Lnet/minecraft/item/ItemGroup;)V")
     private void setSelectedTab(ItemGroup group, CallbackInfo ci) {
-        buttons.removeAll(marbles_tabButtons);
-        marbles_tabButtons.clear();
+        ((ScreenAccessor) this).getDrawables().removeAll(chord_tabWidgets);
+        chord_tabWidgets.clear();
 
-        if (group instanceof AbstractTabbedItemGroup) {
-            AbstractTabbedItemGroup tab = (AbstractTabbedItemGroup) group;
+        if (group instanceof AbstractTabbedItemGroup tab) {
             if (!tab.isInitialized()) {
                 tab.init();
             }
 
             for (int i = 0; i < tab.getTabs().size(); i++) {
-                ItemGroupTabWidget tabWidget = tab.getTabs().get(i).createWidget(this.x, this.y, i, tab, CreativeInventoryScreen.class.cast(this));
+                ItemGroupTabWidget widget = tab.getTabs().get(i).createWidget(this.x, this.y, i, tab, CreativeInventoryScreen.class.cast(this));
 
                 if (i == tab.getSelectedTabIndex()) {
-                    tabWidget.isSelected = true;
+                    widget.isSelected = true;
                 }
 
-                marbles_tabButtons.add(tabWidget);
-                addButton(tabWidget);
+                chord_tabWidgets.add(widget);
+                this.addDrawableChild(widget);
             }
         }
     }
 
     @Inject(at = @At("TAIL"), method = "render(Lnet/minecraft/client/util/math/MatrixStack;IIF)V")
     public void render(MatrixStack matrixStack, int mouseX, int mouseY, float delta, CallbackInfo cbi) {
-        marbles_tabButtons.forEach(b -> {
+        chord_tabWidgets.forEach(b -> {
             if (b.isHovered()) {
                 renderTooltip(matrixStack, b.getMessage(), mouseX, mouseY);
             }

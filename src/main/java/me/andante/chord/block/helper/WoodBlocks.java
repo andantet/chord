@@ -98,7 +98,7 @@ public class WoodBlocks {
         WALL_SIGN = register(id + "_wall_sign", new CWallSignBlock(FabricBlockSettings.copy(Blocks.OAK_WALL_SIGN), signType), false);
         SIGN_ITEM = register(id + "_sign", new SignItem(new Item.Settings().maxCount(16).group(itemGroup), SIGN, WALL_SIGN));
 
-        BOAT_ITEM = register(id + "_boat", new CBoatItem(new Supplier<EntityType<CBoatEntity>>(){
+        BOAT_ITEM = register(id + "_boat", new CBoatItem(new Supplier<>() {
             @Override
             public EntityType<CBoatEntity> get() {
                 return BOAT_ENTITY;
